@@ -1,23 +1,10 @@
-const mongoose = require("mongoose");
+const express = require("express");
+const path = require("path");
+const postController = require('../controllers/postController')
+const router = express.Router();
 
-const postSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    type: {
-        type: String,
-        required: true
-    },
-    content: {
-        type: String,
-        required: true
-    },
-    author: String,
-    date: {
-        type: Date
-    },
-    upvote: Number
-});
+router.get("/blog", postController.getAllBlogs);
 
-module.exports = mongoose.model('post', postSchema)
+router.get("/notice", postController.getAllNotices );
+
+module.exports = router;
